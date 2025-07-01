@@ -655,27 +655,31 @@ def block_scale_fp4_matmul(  #
         BLOCK_M: tl.constexpr,  #
         BLOCK_N: tl.constexpr,  #
         BLOCK_K: tl.constexpr,  #
-        NUM_STAGES: tl.constexpr, PACK_ALONG_K: tl.constexpr):  #
+        NUM_STAGES: tl.constexpr, A_PACK_ALONG_K: tl.constexpr, B_PACK_ALONG_K: tl.constexpr):  #
     pid = tl.program_id(axis=0)
     num_pid_m = tl.cdiv(M, BLOCK_M)
     pid_m = pid % num_pid_m
     pid_n = pid // num_pid_m
     offs_am = (pid_m * BLOCK_M + tl.arange(0, BLOCK_M))
     offs_bn = (pid_n * BLOCK_N + tl.arange(0, BLOCK_N))
-    PACKING_ALONG_M_N: tl.constexpr = 1 if PACK_ALONG_K else 2
-    offs_am_packed = (pid_m * (BLOCK_M // PACKING_ALONG_M_N) + tl.arange(0, BLOCK_M // PACKING_ALONG_M_N))
-    offs_bn_packed = (pid_n * (BLOCK_N // PACKING_ALONG_M_N) + tl.arange(0, BLOCK_N // PACKING_ALONG_M_N))
-    BLOCK_K_PACKED: tl.constexpr = BLOCK_K // 2 if PACK_ALONG_K else BLOCK_K
+    PACKING_ALONG_M: tl.constexpr = 1 if A_PACK_ALONG_K else 2
+    PACKING_ALONG_N: tl.constexpr = 1 if B_PACK_ALONG_K else 2
+    offs_am_packed = (pid_m * (BLOCK_M // PACKING_ALONG_M) + tl.arange(0, BLOCK_M // PACKING_ALONG_M))
+    offs_bn_packed = (pid_n * (BLOCK_N // PACKING_ALONG_N) + tl.arange(0, BLOCK_N // PACKING_ALONG_N))
+    A_BLOCK_K_PACKED: tl.constexpr = BLOCK_K // 2 if A_PACK_ALONG_K else BLOCK_K
+    B_BLOCK_K_PACKED: tl.constexpr = BLOCK_K // 2 if B_PACK_ALONG_K else BLOCK_K
 
     # Two e2m1 values per K
-    offs_k = tl.arange(0, BLOCK_K_PACKED)
-    offs_scale_k = tl.arange(0, BLOCK_K // VEC_SIZE)
+    a_offs_k = tl.arange(0, A_BLOCK_K_PACKED)
+    a_offs_scale_k = tl.arange(0, BLOCK_K // VEC_SIZE)
+    b_offs_k = tl.arange(0, B_BLOCK_K_PACKED)
+    b_offs_scale_k = tl.arange(0, BLOCK_K // VEC_SIZE)
     if a_scale is not None:
-        a_scale_ptr = a_scale + offs_am[:, None] * stride_scale + offs_scale_k[None, :]
+        a_scale_ptr = a_scale + offs_am[:, None] * stride_scale + a_offs_scale_k[None, :]
     if b_scale is not None:
-        b_scale_ptr = b_scale + offs_bn[:, None] * stride_scale + offs_scale_k[None, :]
-    a_ptrs = a_ptr + (offs_am_packed[:, None] * stride_am + offs_k[None, :] * stride_ak)
-    b_ptrs = b_ptr + (offs_k[:, None] * stride_bk + offs_bn_packed[None, :] * stride_bn)
+        b_scale_ptr = b_scale + offs_bn[:, None] * stride_scale + b_offs_scale_k[None, :]
+    a_ptrs = a_ptr + (offs_am_packed[:, None] * stride_am + a_offs_k[None, :] * stride_ak)
+    b_ptrs = b_ptr + (b_offs_k[:, None] * stride_bk + offs_bn_packed[None, :] * stride_bn)
     accumulator = tl.zeros((BLOCK_M, BLOCK_N), dtype=output_ptr.dtype.element_ty)
     for k in tl.range(0, tl.cdiv(K, BLOCK_K), num_stages=NUM_STAGES):
         a = tl.load(a_ptrs)
@@ -688,10 +692,10 @@ def block_scale_fp4_matmul(  #
             scale_b = tl.load(b_scale_ptr)
         else:
             scale_b = None
-        accumulator = tl.dot_scaled(a, scale_a, "e2m1", b, scale_b, "e2m1", accumulator, lhs_k_pack=PACK_ALONG_K,
-                                    rhs_k_pack=PACK_ALONG_K)
-        a_ptrs += (BLOCK_K_PACKED) * stride_ak
-        b_ptrs += (BLOCK_K_PACKED) * stride_bk
+        accumulator = tl.dot_scaled(a, scale_a, "e2m1", b, scale_b, "e2m1", accumulator, lhs_k_pack=A_PACK_ALONG_K,
+                                    rhs_k_pack=B_PACK_ALONG_K)
+        a_ptrs += (A_BLOCK_K_PACKED) * stride_ak
+        b_ptrs += (B_BLOCK_K_PACKED) * stride_bk
         if a_scale is not None:
             a_scale_ptr += BLOCK_K // VEC_SIZE
         if b_scale is not None:
@@ -708,17 +712,18 @@ def block_scale_fp4_matmul(  #
                                                        (128, 256, 256), (128, 128, 64), (128, 64, 128)])
 @pytest.mark.parametrize("with_a_scale", [True, False])
 @pytest.mark.parametrize("with_b_scale", [True, False])
-@pytest.mark.parametrize("pack_along_k", [True, False])
+@pytest.mark.parametrize("a_pack_along_k", [True, False])
+@pytest.mark.parametrize("b_pack_along_k", [True, False])
 @pytest.mark.parametrize(("scale_type", "VEC_SIZE"), [("float8_e8m0fnu", 32), ("float8_e4m3fn", 16)],
                          ids=["mxfp4", "nvfp4"])
 @pytest.mark.parametrize("nonKDim", ([0, 16, 32] if is_hip_cdna() else [0]))
-def test_block_scale_fp4(M, N, K, BLOCK_M, BLOCK_N, BLOCK_K, VEC_SIZE, with_a_scale, with_b_scale, pack_along_k,
-                         scale_type, nonKDim, device):
+def test_block_scale_fp4(M, N, K, BLOCK_M, BLOCK_N, BLOCK_K, VEC_SIZE, with_a_scale, with_b_scale, a_pack_along_k,
+                         b_pack_along_k, scale_type, nonKDim, device):
     assert M % BLOCK_M == 0
     assert N % BLOCK_N == 0
     assert K % BLOCK_K == 0
     if is_cuda():
-        if scale_type == "float8_e4m3fn" and not pack_along_k:
+        if scale_type == "float8_e4m3fn" and not (a_pack_along_k and b_pack_along_k):
             pytest.skip("Packing along K is required for float8_e4m3fn")
         if torch.cuda.get_device_capability()[0] != 10:
             pytest.skip("Requires compute capability == 10")
@@ -734,12 +739,13 @@ def test_block_scale_fp4(M, N, K, BLOCK_M, BLOCK_N, BLOCK_K, VEC_SIZE, with_a_sc
 
     NUM_STAGES = 1
     torch.manual_seed(42)
-    packing_dim = 1 if pack_along_k else 0
+    a_packing_dim = 1 if a_pack_along_k else 0
+    b_packing_dim = 1 if b_pack_along_k else 0
     a_mxfp4 = MXFP4Tensor(size=(M, K), device=device).random()
-    a = a_mxfp4.to_packed_tensor(dim=packing_dim)
+    a = a_mxfp4.to_packed_tensor(dim=a_packing_dim)
     # Generate b with k-major layout, pack two e2m1 along k or n, then logical transpose to K, N
     b_mxfp4 = MXFP4Tensor(size=(N, K), device=device).random()
-    b = b_mxfp4.to_packed_tensor(dim=packing_dim).T
+    b = b_mxfp4.to_packed_tensor(dim=b_packing_dim).T
     # No need to pack along K since we convert each e2m1 to f32 directly for the reference matmul
     b_ref = b_mxfp4.to(torch.float32).T
 
@@ -776,12 +782,12 @@ def test_block_scale_fp4(M, N, K, BLOCK_M, BLOCK_N, BLOCK_K, VEC_SIZE, with_a_sc
         kernel_kwargs["matrix_instr_nonkdim"] = nonKDim
     k = block_scale_fp4_matmul[grid](a, b, output, a_scale, b_scale, M, N, K, stride_scale, a.stride(0), a.stride(1),
                                      b.stride(0), b.stride(1), output.stride(0), output.stride(1), VEC_SIZE, BLOCK_M,
-                                     BLOCK_N, BLOCK_K, NUM_STAGES=NUM_STAGES, PACK_ALONG_K=pack_along_k,
-                                     **kernel_kwargs)
+                                     BLOCK_N, BLOCK_K, NUM_STAGES=NUM_STAGES, A_PACK_ALONG_K=a_pack_along_k,
+                                     B_PACK_ALONG_K=b_pack_along_k, num_warps=4, **kernel_kwargs)
     torch.testing.assert_close(ref_out, output, atol=1e-2, rtol=1e-2)
     if is_cuda():
         ptx = k.asm["ptx"]
-        if pack_along_k:
+        if a_pack_along_k or b_pack_along_k:
             assert "kind::mxf4" in ptx
         else:
             assert "kind::mxf8f6f4" in ptx
