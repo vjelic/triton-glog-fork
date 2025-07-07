@@ -339,6 +339,12 @@ void createAndScheduleStreamCopy(
   SmallVector<ttg::LocalAllocOp> allocsToErase;
   for (Operation *user : loadOp->getUsers()) {
     if (auto userAlloc = dyn_cast<ttg::LocalAllocOp>(user)) {
+      for (auto allocUser : userAlloc->getUsers()) {
+        if (allocUser->hasTrait<OpTrait::LocalLoadTrait>())
+          if (stages[SCHED_LOCAL_LOAD] != stages[SCHED_COMPUTE])
+            schedule.insert(allocUser, stages[SCHED_LOCAL_LOAD],
+                            clusters[SCHED_LOCAL_LOAD]);
+      }
       tt::replaceUsesAndPropagateType(builder, userAlloc, viewLoad.getResult());
       allocsToErase.push_back(userAlloc);
     }
