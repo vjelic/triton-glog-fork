@@ -1723,7 +1723,7 @@ TEST_F(LinearLayoutConversionsTest, mfma16_dot_op_rhs_trans) {
                             /*isTransposed=*/true);
 
   auto tmfmaDotOp1_kwidth_16 =
-      mfmaDotOp(parentTMfma16, /*opIdx=*/1, /*kWidth=*/8);
+      mfmaDotOp(parentTMfma16, /*opIdx=*/1, /*kWidth=*/16);
   auto tmfmaDotOp1_kwidth_8 =
       mfmaDotOp(parentTMfma16, /*opIdx=*/1, /*kWidth=*/8);
   auto tmfmaDotOp1_kwidth_4 =
@@ -1735,7 +1735,7 @@ TEST_F(LinearLayoutConversionsTest, mfma16_dot_op_rhs_trans) {
                                     /*elemBitWidth=*/16));
   EXPECT_EQ(chooseDsReadB64TrLayout(tmfmaDotOp1_kwidth_16, {128, 128},
                                     /*elemBitWidth=*/8),
-            chooseDsReadB64TrLayout(mfmaDotOp1_kwidth_8, {128, 128},
+            chooseDsReadB64TrLayout(mfmaDotOp1_kwidth_16, {128, 128},
                                     /*elemBitWidth=*/8));
   EXPECT_EQ(chooseDsReadB64TrLayout(tmfmaDotOp1_kwidth_8, {64, 32},
                                     /*elemBitWidth=*/16),
