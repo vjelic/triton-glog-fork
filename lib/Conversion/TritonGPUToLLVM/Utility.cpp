@@ -596,7 +596,7 @@ lowerLocalLdSt(Location loc, MLIRContext *ctx,
                ArrayRef<Value> valsArray, // Input for store, empty for load
                Type llvmElemTy, triton::gpu::MemDescType srcTy,
                SharedMemoryObject smemObj, ConversionPatternRewriter &rewriter,
-               const TargetInfoBase &targetInfo) {
+               const TargetInfoBase &targetInfo, Operation *op) {
   assert(cvt.getNumOutDims() == 1);
   assert(*cvt.getOutDimNames().begin() == str_attr("offset"));
   auto smemAddrAddon = [&](Value smemOffset) {
@@ -619,7 +619,7 @@ lowerLocalLdSt(Location loc, MLIRContext *ctx,
       inVals = removeBroadcastSrc.apply(inVals);
     }
     auto outVals = lowerLocalLdSt(loc, ctx, prmtCvt, inVals, llvmElemTy, srcTy,
-                                  smemObj, rewriter, targetInfo);
+                                  smemObj, rewriter, targetInfo, op);
     if (!isStore) {
       outVals = broadcastAs(outVals, cvt);
     }
@@ -629,7 +629,7 @@ lowerLocalLdSt(Location loc, MLIRContext *ctx,
   auto maskSpanAffineOffset = smemObj.getMaskSpanOffsets(srcTy);
   return lowerLdStShared(loc, ctx, cvt, valsArray, llvmElemTy,
                          smemObj.getBase(), smemAddrAddon, affineOffset,
-                         maskSpanAffineOffset, rewriter, targetInfo);
+                         maskSpanAffineOffset, rewriter, targetInfo, op);
 }
 
 bool emitTransferBetweenRegistersAndShared(
