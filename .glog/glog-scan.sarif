@@ -1,0 +1,522 @@
+{
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Glog.AI",
+          "organization": "Glog.AI",
+          "fullName": "Glog, Making software more secure",
+          "version": "1.0.0",
+          "semanticVersion": "1.0.0",
+          "informationUri": "https://www.glog.ai",
+          "rules": [
+            {
+              "id": "glog-e5caba8c-a460-430b-8a47-e32b11fb8fb7",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe `shell=True` argument in the `subprocess.run()` function in Python is a security vulnerability. It allows for shell injection, a form of attack that can be used to execute arbitrary commands. This is especially dangerous if your program is running with special privileges.\n\nThe `subprocess.run()` function is used to spawn a new process and run the specified command. When `shell=True` is used, the specified command is executed through the shell. This can be exploited if an attacker is able to control the command string.\n\n## Mitigation Advice\n\nAvoid using `shell=True` whenever possible. Instead, pass the command and its arguments as a list. This way, Python will take care of any necessary escaping.\n\nIf you must use `shell=True`, be sure to properly escape any user-supplied input to prevent shell injection attacks. The `shlex.quote()` function can be used to safely escape any string.\n\n## Source Code Fix Recommendation\n\nHere's how you can modify the code to avoid this vulnerability:\n\n```python\nimport subprocess\nimport shlex\n\n# Assume commandstring is a user-supplied string\nsafe_command = shlex.quote(commandstring)\nproc = subprocess.run(safe_command, shell=True, check=True, executable='/bin/bash')\n```\n\n## Library Dependencies\n\nThe code example requires the `subprocess` and `shlex` modules, which are both part of the Python Standard Library.\n\n## References\n\n- [OWASP Python Security - Shell Injection](https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html)\n- [CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')](https://cwe.mitre.org/data/definitions/78.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B602"
+                ]
+              }
+            },
+            {
+              "id": "glog-595b5bcf-152f-4575-81c3-498a9af318e0",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe `shell=True` argument in the `subprocess.run()` function in Python is a security vulnerability. It allows for shell injection, a form of attack that can execute arbitrary commands on the host's shell. This is especially dangerous if the command string is formed using external input. An attacker can potentially execute harmful commands, leading to data loss, data theft, or server takeover.\n\n## Mitigation Advice\n\nAvoid using `shell=True` whenever possible, especially if the command string includes external input. If you need to use shell features, consider using the `shlex` library to safely create command strings. Always validate and sanitize input.\n\n## Source Code Fix Recommendation\n\nInstead of:\n\n```python\nproc = subprocess.run(commandstring, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE)\n```\n\nYou can use:\n\n```python\nimport shlex\ncommand_list = shlex.split(commandstring)\nproc = subprocess.run(command_list, check=True, executable='/bin/bash', stdout=subprocess.PIPE)\n```\n\n## Library Dependencies\n\nThe code example requires the `subprocess` library, which is included in the Python Standard Library.\n\n## References\n\n- [OWASP Command Injection](https://owasp.org/www-community/attacks/Command_Injection)\n- [CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')](https://cwe.mitre.org/data/definitions/78.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B602"
+                ]
+              }
+            },
+            {
+              "id": "glog-c4149b1b-09af-402e-9168-4a717c8fd8ad",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe \"Vulnerability in URL Audit for Permitted Schemes\" in Python refers to a situation where an application does not properly validate the schemes of the URLs it processes. This can lead to a situation where an attacker can manipulate the URL to access unauthorized resources or perform malicious activities. In the provided code, the `urlopen` function is used to open a URL specified by the user. If the URL scheme is not validated, it can lead to various security issues.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to validate the scheme of the URL before processing it. Only allow URLs with safe schemes such as `http` or `https`. Avoid using `file`, `data`, or any other scheme that can potentially access local resources. \n\n## Source Code Fix Recommendation\n\nHere is a recommended fix for the provided code:\n\n```python\nfrom urllib.parse import urlparse\nimport urllib.request\n\ndef open_url(request):\n    url = urlparse(request)\n    if url.scheme not in ['http', 'https']:\n        raise ValueError('Invalid URL scheme')\n    return urllib.request.urlopen(request, timeout=300)\n```\n\nIn this code, the `urlparse` function is used to parse the URL and extract the scheme. If the scheme is not `http` or `https`, a `ValueError` is raised.\n\n## Library Dependencies\n\nThe code example requires the following Python standard library modules:\n\n- `urllib.parse`\n- `urllib.request`\n\n## References\n\n- [CWE-918: Server-Side Request Forgery (SSRF)](https://cwe.mitre.org/data/definitions/918.html)\n\nPlease note that the CWE link provided is for Server-Side Request Forgery (SSRF) which is a common attack that exploits the vulnerability in URL audit for permitted schemes."
+              },
+              "properties": {
+                "tags": [
+                  "B310"
+                ]
+              }
+            },
+            {
+              "id": "glog-1f171e8c-0db2-4fec-829c-dfeed96f7bbd",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe \"Unvalidated tarfile.extractall usage vulnerability\" in Python refers to a security flaw that can occur when a Python script uses the `tarfile.extractall()` method without validating the contents of the tarfile. This can lead to a path traversal attack, where an attacker can create a tarfile that, when extracted, overwrites arbitrary files on the system.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to validate the paths of the files in the tarfile before extraction. This can be done by checking each file's path in the tarfile and ensuring that it does not contain directory traversal sequences (like \"../\"). \n\n## Source Code Fix Recommendation\n\nHere is a sample code fix for the vulnerability:\n\n```python\nimport os\nimport tarfile\n\nwith tarfile.open('sample.tar', 'r') as tar:\n    for member in tar.getmembers():\n        # Check for directory traversal attack\n        if os.path.isabs(member.name) or \"..\" in member.name:\n            print(f\"Skipping potentially unsafe tarfile member {member.name}\")\n            continue\n        tar.extract(member, path=package_root_dir)\n```\n\nIn this code, we iterate over each member of the tarfile and check if its name contains an absolute path or a directory traversal sequence. If it does, we skip that member and do not extract it.\n\n## Library Dependencies\n\nThe code example requires the `os` and `tarfile` libraries, which are both part of the Python Standard Library.\n\n## References\n\n- [OWASP Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal)\n- [CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')](https://cwe.mitre.org/data/definitions/22.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B202"
+                ]
+              }
+            },
+            {
+              "id": "glog-4612e9ae-b89d-42c1-96cb-b78e97e4992f",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe `shell=True` argument in the `subprocess.run()` function in Python is a security vulnerability. It allows for shell injection, a form of attack that can be used to execute arbitrary commands. This is especially dangerous if your program is running with special privileges.\n\nThe `subprocess.run()` function is used to spawn a new process and run the specified command. When `shell=True` is used, the specified command is executed through the shell. This can be exploited if an attacker is able to control the command string.\n\n## Mitigation Advice\n\nAvoid using `shell=True` whenever possible. Instead, pass the command and its arguments as a list. This way, Python will take care of any necessary escaping.\n\nIf you must use `shell=True`, be sure to properly escape any user-supplied input to prevent shell injection attacks. The `shlex.quote()` function can be used to safely escape any string.\n\n## Source Code Fix Recommendation\n\nHere's how you can modify the code to avoid this vulnerability:\n\n```python\nimport subprocess\nimport shlex\n\n# Assume commandstring is a user-supplied string\nsafe_command = shlex.quote(commandstring)\nproc = subprocess.run(safe_command, shell=True, check=True, executable='/bin/bash')\n```\n\n## Library Dependencies\n\nThe code example requires the `subprocess` and `shlex` modules, which are both part of the Python Standard Library.\n\n## References\n\n- [OWASP Python Security - Shell Injection](https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html)\n- [CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')](https://cwe.mitre.org/data/definitions/78.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B602"
+                ]
+              }
+            },
+            {
+              "id": "glog-ba07a820-ca70-445e-a074-31e54d191af3",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe `shell=True` argument in the `subprocess.run()` function in Python is a security vulnerability. It allows for shell injection, a form of attack that can execute arbitrary commands on the host's shell. This is especially dangerous if the command string is formed using external input. An attacker can potentially execute harmful commands, leading to data loss, data theft, or server takeover.\n\n## Mitigation Advice\n\nAvoid using `shell=True` whenever possible, especially if the command string includes external input. If you need to use shell features, consider using the `shlex` library to safely create command strings. Always validate and sanitize input.\n\n## Source Code Fix Recommendation\n\nInstead of:\n\n```python\nproc = subprocess.run(commandstring, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE)\n```\n\nYou can use:\n\n```python\nimport shlex\ncommand_list = shlex.split(commandstring)\nproc = subprocess.run(command_list, check=True, executable='/bin/bash', stdout=subprocess.PIPE)\n```\n\n## Library Dependencies\n\nThe code example requires the `subprocess` library, which is included in the Python Standard Library.\n\n## References\n\n- [OWASP Command Injection](https://owasp.org/www-community/attacks/Command_Injection)\n- [CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection')](https://cwe.mitre.org/data/definitions/78.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B602"
+                ]
+              }
+            },
+            {
+              "id": "glog-48839056-3fe1-4ad3-a5d1-ac6024fc20b9",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Exec Usage Detected\" is a vulnerability in Python programming language that arises when the `exec()` function is used. The `exec()` function is a built-in Python function that is used to execute dynamically created program, which can be a string or object code. If this function is used, it can potentially allow an attacker to execute arbitrary code, leading to serious security risks such as code injection, data leakage, and even server takeover.\n\n## Mitigation Advice\n\nAvoid using the `exec()` function whenever possible. If it's absolutely necessary to use it, make sure that the input passed to `exec()` is not coming directly from user input or any untrusted source. Always validate and sanitize the input before passing it to `exec()`. \n\n## Source Code Fix Recommendation\n\nInstead of using `exec()`, consider using safer alternatives such as `getattr()`, `setattr()`, or `hasattr()`. If you must use `exec()`, ensure that the input is safe. Here's an example of how you can do this:\n\n```python\n# BAD CODE\nexec(compiled_code, fn_globals, local_namespace)\n\n# GOOD CODE\n# Ensure that compiled_code is safe before executing it\nif is_code_safe(compiled_code):\n    exec(compiled_code, fn_globals, local_namespace)\n```\n\nIn the above code, `is_code_safe()` is a hypothetical function that you would need to implement. This function should thoroughly check `compiled_code` to ensure that it doesn't contain any malicious code.\n\n## Library Dependencies\n\nThe `exec()` function is a built-in Python function, so no additional library dependencies are required.\n\n## References\n\n- [CWE-94: Improper Control of Generation of Code ('Code Injection')](https://cwe.mitre.org/data/definitions/94.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B102"
+                ]
+              }
+            },
+            {
+              "id": "glog-9f51037e-bef3-427c-8f29-05b1f262fbb8",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\n\"Exec Usage Detected\" is a vulnerability in Python programming language that arises when the `exec()` function is used. The `exec()` function is a powerful built-in function in Python that dynamically executes Python program which can either be a string or object code. If not properly sanitized, it can be exploited by an attacker to execute arbitrary commands leading to serious security issues such as code injection, data leakage, and even remote code execution.\n\n## Mitigation Advice\n\nAvoid using `exec()` function whenever possible. If it's absolutely necessary to use it, ensure that the input passed to `exec()` is properly sanitized and validated to prevent any malicious code from being executed. \n\n## Source Code Fix Recommendation\n\nInstead of using `exec()`, consider using safer alternatives such as `getattr()`, `setattr()`, or `locals()`. If you must use `exec()`, ensure to sanitize and validate the input. Here is an example:\n\n```python\n# BAD\nexec(func_body, func_namespace)\n\n# GOOD\n# Validate and sanitize func_body and func_namespace before using them\nif isinstance(func_body, str) and isinstance(func_namespace, dict):\n    sanitized_func_body = sanitize_input(func_body)\n    sanitized_func_namespace = sanitize_input(func_namespace)\n    exec(sanitized_func_body, sanitized_func_namespace)\n```\n\nIn the above code, `sanitize_input()` is a hypothetical function that you would implement to sanitize and validate the input.\n\n## Library Dependencies\n\nThe `exec()` function is a built-in function in Python and does not require any additional library dependencies.\n\n## References\n\n- [CWE-94: Improper Control of Generation of Code ('Code Injection')](https://cwe.mitre.org/data/definitions/94.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B102"
+                ]
+              }
+            },
+            {
+              "id": "glog-4e9cf7e6-6051-41e7-a94a-ee6104f6960f",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe `tarfile.extractall` function in Python is used to extract all members of the archive to the current working directory or to the directory specified. However, if the usage of this function is not properly validated, it can lead to a vulnerability known as path traversal. This vulnerability can allow an attacker to write files to arbitrary locations through a \"..\" (dot dot) path, potentially leading to code execution, privilege escalation, or denial of service.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to validate the paths of the files being extracted from the tar archive. This can be done by checking if the file path is absolute or if it contains \"..\" (dot dot), which can be used to traverse directories. If either of these conditions is true, the file should not be extracted.\n\n## Source Code Fix Recommendation\n\nHere is a simple way to validate the paths of the files being extracted:\n\n```python\nimport os\nimport tarfile\n\nwith tarfile.open('archive.tar.gz', 'r:gz') as tar:\n    for member in tar.getmembers():\n        # Check if file path is absolute or contains \"..\"\n        if os.path.isabs(member.name) or \"..\" in member.name:\n            print(f\"Skipping potentially dangerous file {member.name}\")\n            continue\n        tar.extract(member, path=tmp_path)\n```\n\n## Library Dependencies\n\nThe code example requires the following Python standard library:\n\n- `os`\n- `tarfile`\n\n## References\n\n- [OWASP Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal)\n- [CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')](https://cwe.mitre.org/data/definitions/22.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B202"
+                ]
+              }
+            },
+            {
+              "id": "glog-3b9069d2-93d2-4b95-b899-0bbdf8baa0fb",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe \"Unvalidated tarfile.extractall usage vulnerability\" in Python refers to a security flaw that can occur when a Python script uses the `tarfile.extractall()` method without validating the contents of the tarfile. This can lead to a path traversal attack, where an attacker can create a tarfile that, when extracted, overwrites arbitrary files on the system.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to validate the paths of the files in the tarfile before extraction. This can be done by checking each file's path in the tarfile and ensuring that it does not contain directory traversal sequences (like \"../\"). \n\n## Source Code Fix Recommendation\n\nHere is a sample code fix for the vulnerability:\n\n```python\nimport os\nimport tarfile\n\nwith tarfile.open('sample.tar', 'r') as tar:\n    for member in tar.getmembers():\n        # Check for directory traversal attack\n        if os.path.isabs(member.name) or \"..\" in member.name:\n            print(f\"Skipping potentially unsafe tarfile member {member.name}\")\n            continue\n        tar.extract(member, path=package_root_dir)\n```\n\nIn this code, we iterate over each member of the tarfile and check if its name contains an absolute path or a directory traversal sequence. If it does, we skip that member and do not extract it.\n\n## Library Dependencies\n\nThe code example requires the `os` and `tarfile` libraries, which are both part of the Python Standard Library.\n\n## References\n\n- [OWASP Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal)\n- [CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')](https://cwe.mitre.org/data/definitions/22.html)"
+              },
+              "properties": {
+                "tags": [
+                  "B202"
+                ]
+              }
+            }
+          ],
+          "language": "en-US",
+          "contents": [
+            "localizedData",
+            "nonLocalizedData"
+          ],
+          "isComprehensive": false
+        }
+      },
+      "language": "en-US",
+      "results": [
+        {
+          "ruleId": "glog-e5caba8c-a460-430b-8a47-e32b11fb8fb7",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "\"Shell=True Subprocess Call Security Vulnerability Detected\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/perf-kernels/tools/tune_gemm/utils/utils.py"
+                },
+                "region": {
+                  "startLine": 47,
+                  "startColumn": 12,
+                  "endLine": 47,
+                  "endColumn": 89,
+                  "snippet": {
+                    "text": "    proc = subprocess.run(commandstring, shell=True, check=True, executable='/bin/bash')\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 46,
+                  "endLine": 48,
+                  "snippet": {
+                    "text": "        return proc.stdout.splitlines()\n    proc = subprocess.run(commandstring, shell=True, check=True, executable='/bin/bash')\n    return None\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "HIGH",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-595b5bcf-152f-4575-81c3-498a9af318e0",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "\"Shell=True Subprocess Call Security Vulnerability Detected\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/perf-kernels/tools/tune_gemm/utils/utils.py"
+                },
+                "region": {
+                  "startLine": 45,
+                  "startColumn": 16,
+                  "endLine": 45,
+                  "endColumn": 117,
+                  "snippet": {
+                    "text": "        proc = subprocess.run(commandstring, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE)\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 44,
+                  "endLine": 46,
+                  "snippet": {
+                    "text": "    if capture:\n        proc = subprocess.run(commandstring, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE)\n        return proc.stdout.splitlines()\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "HIGH",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-c4149b1b-09af-402e-9168-4a717c8fd8ad",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "\"Vulnerability in URL Audit for Permitted Schemes\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/setup.py"
+                },
+                "region": {
+                  "startLine": 221,
+                  "startColumn": 12,
+                  "endLine": 221,
+                  "endColumn": 56,
+                  "snippet": {
+                    "text": "    return urllib.request.urlopen(request, timeout=300)\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 220,
+                  "endLine": 222,
+                  "snippet": {
+                    "text": "    # Set timeout to 300 seconds to prevent the request from hanging forever.\n    return urllib.request.urlopen(request, timeout=300)\n\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "MEDIUM",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-1f171e8c-0db2-4fec-829c-dfeed96f7bbd",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Unvalidated tarfile.extractall usage vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/setup.py"
+                },
+                "region": {
+                  "startLine": 261,
+                  "startColumn": 25,
+                  "endLine": 261,
+                  "endColumn": 63,
+                  "snippet": {
+                    "text": "                        file.extractall(path=package_root_dir)\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 260,
+                  "endLine": 262,
+                  "snippet": {
+                    "text": "                    with zipfile.ZipFile(file_bytes, \"r\") as file:\n                        file.extractall(path=package_root_dir)\n                else:\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "HIGH",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-4612e9ae-b89d-42c1-96cb-b78e97e4992f",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "\"Shell=True Subprocess Call Security Vulnerability Detected\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/perf-kernels/streamk/utils/utils.py"
+                },
+                "region": {
+                  "startLine": 58,
+                  "startColumn": 12,
+                  "endLine": 58,
+                  "endColumn": 89,
+                  "snippet": {
+                    "text": "    proc = subprocess.run(commandstring, shell=True, check=True, executable='/bin/bash')\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 57,
+                  "endLine": 59,
+                  "snippet": {
+                    "text": "        return proc.stdout.splitlines()\n    proc = subprocess.run(commandstring, shell=True, check=True, executable='/bin/bash')\n    return None\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "HIGH",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-ba07a820-ca70-445e-a074-31e54d191af3",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "\"Shell=True Subprocess Call Security Vulnerability Detected\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/perf-kernels/streamk/utils/utils.py"
+                },
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 16,
+                  "endLine": 56,
+                  "endColumn": 117,
+                  "snippet": {
+                    "text": "        proc = subprocess.run(commandstring, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE)\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 55,
+                  "endLine": 57,
+                  "snippet": {
+                    "text": "    if capture:\n        proc = subprocess.run(commandstring, shell=True, check=True, executable='/bin/bash', stdout=subprocess.PIPE)\n        return proc.stdout.splitlines()\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "HIGH",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-48839056-3fe1-4ad3-a5d1-ac6024fc20b9",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "\"Exec Usage Detected\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/runtime/interpreter.py"
+                },
+                "region": {
+                  "startLine": 1194,
+                  "startColumn": 9,
+                  "endLine": 1194,
+                  "endColumn": 57,
+                  "snippet": {
+                    "text": "        exec(compiled_code, fn_globals, local_namespace)\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 1193,
+                  "endLine": 1195,
+                  "snippet": {
+                    "text": "                fn_globals[key] = value\n        exec(compiled_code, fn_globals, local_namespace)\n        return local_namespace[self.fn.__name__]\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "MEDIUM",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-9f51037e-bef3-427c-8f29-05b1f262fbb8",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "\"Exec Usage Detected\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/runtime/jit.py"
+                },
+                "region": {
+                  "startLine": 407,
+                  "startColumn": 5,
+                  "endLine": 407,
+                  "endColumn": 36,
+                  "snippet": {
+                    "text": "    exec(func_body, func_namespace)\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 406,
+                  "endLine": 408,
+                  "snippet": {
+                    "text": "    # Execute the function string in func_namespace to create the function\n    exec(func_body, func_namespace)\n\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "MEDIUM",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-4e9cf7e6-6051-41e7-a94a-ee6104f6960f",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Unvalidated tarfile.extractall usage vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/setup.py"
+                },
+                "region": {
+                  "startLine": 302,
+                  "startColumn": 9,
+                  "endLine": 302,
+                  "endColumn": 39,
+                  "snippet": {
+                    "text": "        file.extractall(path=tmp_path)\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 301,
+                  "endLine": 303,
+                  "snippet": {
+                    "text": "        file = tarfile.open(fileobj=open_url(url), mode=\"r|*\")\n        file.extractall(path=tmp_path)\n    os.makedirs(os.path.split(dst_path)[0], exist_ok=True)\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "HIGH",
+            "issue_confidence": "HIGH"
+          }
+        },
+        {
+          "ruleId": "glog-3b9069d2-93d2-4b95-b899-0bbdf8baa0fb",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Unvalidated tarfile.extractall usage vulnerability"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/setup.py"
+                },
+                "region": {
+                  "startLine": 264,
+                  "startColumn": 25,
+                  "endLine": 264,
+                  "endColumn": 63,
+                  "snippet": {
+                    "text": "                        file.extractall(path=package_root_dir)\n"
+                  }
+                },
+                "contextRegion": {
+                  "startLine": 263,
+                  "endLine": 265,
+                  "snippet": {
+                    "text": "                    with tarfile.open(fileobj=response, mode=\"r|*\") as file:\n                        file.extractall(path=package_root_dir)\n            # write version url to package_dir\n"
+                  }
+                }
+              }
+            }
+          ],
+          "properties": {
+            "issue_severity": "HIGH",
+            "issue_confidence": "HIGH"
+          }
+        }
+      ],
+      "newlineSequences": [
+        "\r\n",
+        "\n"
+      ]
+    }
+  ]
+}
