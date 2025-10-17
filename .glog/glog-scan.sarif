@@ -36,7 +36,7 @@
               }
             },
             {
-              "id": "aa15b5e7-486d-3487-b744-da57483fe1bb",
+              "id": "83992d10-4727-326f-ae06-dcca5ba51ecc",
               "name": "resources.rules.raptor-interesting-api-calls",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.raptor-interesting-api-calls"
@@ -84,7 +84,7 @@
               }
             },
             {
-              "id": "83992d10-4727-326f-ae06-dcca5ba51ecc",
+              "id": "aa15b5e7-486d-3487-b744-da57483fe1bb",
               "name": "resources.rules.raptor-interesting-api-calls",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.raptor-interesting-api-calls"
@@ -108,26 +108,26 @@
               }
             },
             {
-              "id": "fad5fccf-ac3c-343e-b8de-7bb9d96b5459",
-              "name": "resources.rules.dlint-catastrophic-redos",
+              "id": "23889290-c309-3232-aed2-b5f65a5b6383",
+              "name": "resources.rules.raptor-suspicious-assert",
               "shortDescription": {
-                "text": "Opengrep Finding: resources.rules.dlint-catastrophic-redos"
+                "text": "Opengrep Finding: resources.rules.raptor-suspicious-assert"
               },
               "fullDescription": {
-                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+                "text": "Most codebases define assertion macros which compile to a no-op on non-debug builds. If assertions are the only line of defense against untrusted input, the software may be exposed to attacks that leverage the lack of proper input checks."
               },
               "defaultConfiguration": {
                 "enabled": true,
-                "level": "error"
+                "level": "warning"
               },
               "help": {
-                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
-                "markdown": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/](https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/)\n - [https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/](https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/)\n"
+                "text": "Most codebases define assertion macros which compile to a no-op on non-debug builds. If assertions are the only line of defense against untrusted input, the software may be exposed to attacks that leverage the lack of proper input checks.\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Most codebases define assertion macros which compile to a no-op on non-debug builds. If assertions are the only line of defense against untrusted input, the software may be exposed to attacks that leverage the lack of proper input checks.\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://legends2k.github.io/note/assert_vs_if/](https://legends2k.github.io/note/assert_vs_if/)\n - [https://github.com/struct/mms](https://github.com/struct/mms)\n"
               },
               "properties": {
                 "precision": "very-high",
                 "tags": [
-                  "resources.rules.dlint-catastrophic-redos"
+                  "resources.rules.raptor-suspicious-assert"
                 ]
               }
             },
@@ -156,26 +156,26 @@
               }
             },
             {
-              "id": "23889290-c309-3232-aed2-b5f65a5b6383",
-              "name": "resources.rules.raptor-suspicious-assert",
+              "id": "fad5fccf-ac3c-343e-b8de-7bb9d96b5459",
+              "name": "resources.rules.dlint-catastrophic-redos",
               "shortDescription": {
-                "text": "Opengrep Finding: resources.rules.raptor-suspicious-assert"
+                "text": "Opengrep Finding: resources.rules.dlint-catastrophic-redos"
               },
               "fullDescription": {
-                "text": "Most codebases define assertion macros which compile to a no-op on non-debug builds. If assertions are the only line of defense against untrusted input, the software may be exposed to attacks that leverage the lack of proper input checks."
+                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
               },
               "defaultConfiguration": {
                 "enabled": true,
-                "level": "warning"
+                "level": "error"
               },
               "help": {
-                "text": "Most codebases define assertion macros which compile to a no-op on non-debug builds. If assertions are the only line of defense against untrusted input, the software may be exposed to attacks that leverage the lack of proper input checks.\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
-                "markdown": "Most codebases define assertion macros which compile to a no-op on non-debug builds. If assertions are the only line of defense against untrusted input, the software may be exposed to attacks that leverage the lack of proper input checks.\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://legends2k.github.io/note/assert_vs_if/](https://legends2k.github.io/note/assert_vs_if/)\n - [https://github.com/struct/mms](https://github.com/struct/mms)\n"
+                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/](https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/)\n - [https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/](https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/)\n"
               },
               "properties": {
                 "precision": "very-high",
                 "tags": [
-                  "resources.rules.raptor-suspicious-assert"
+                  "resources.rules.dlint-catastrophic-redos"
                 ]
               }
             },
@@ -228,7 +228,7 @@
               }
             },
             {
-              "id": "1349dfb3-00c4-3bd3-bd97-cad79cbb152c",
+              "id": "2c8401b9-3906-316f-b7d5-a4e9a910ee03",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -276,7 +276,7 @@
               }
             },
             {
-              "id": "2c8401b9-3906-316f-b7d5-a4e9a910ee03",
+              "id": "1349dfb3-00c4-3bd3-bd97-cad79cbb152c",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -296,6 +296,30 @@
                 "precision": "very-high",
                 "tags": [
                   "resources.rules.return-not-in-function"
+                ]
+              }
+            },
+            {
+              "id": "f89271fa-80f0-30a4-a323-ff59f23db664",
+              "name": "resources.rules.dlint-catastrophic-redos",
+              "shortDescription": {
+                "text": "Opengrep Finding: resources.rules.dlint-catastrophic-redos"
+              },
+              "fullDescription": {
+                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "help": {
+                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/](https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/)\n - [https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/](https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "resources.rules.dlint-catastrophic-redos"
                 ]
               }
             },
@@ -325,7 +349,7 @@
               }
             },
             {
-              "id": "f89271fa-80f0-30a4-a323-ff59f23db664",
+              "id": "1b264635-f08b-3f1f-b024-ee15950fc34f",
               "name": "resources.rules.dlint-catastrophic-redos",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.dlint-catastrophic-redos"
@@ -373,30 +397,6 @@
               }
             },
             {
-              "id": "1b264635-f08b-3f1f-b024-ee15950fc34f",
-              "name": "resources.rules.dlint-catastrophic-redos",
-              "shortDescription": {
-                "text": "Opengrep Finding: resources.rules.dlint-catastrophic-redos"
-              },
-              "fullDescription": {
-                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
-              },
-              "defaultConfiguration": {
-                "enabled": true,
-                "level": "error"
-              },
-              "help": {
-                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
-                "markdown": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/](https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/)\n - [https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/](https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/)\n"
-              },
-              "properties": {
-                "precision": "very-high",
-                "tags": [
-                  "resources.rules.dlint-catastrophic-redos"
-                ]
-              }
-            },
-            {
               "id": "e71c7249-ab20-30fa-8c82-1aa003fee50f",
               "name": "resources.rules.dangerous-subprocess-use",
               "shortDescription": {
@@ -417,30 +417,6 @@
                 "precision": "very-high",
                 "tags": [
                   "resources.rules.dangerous-subprocess-use"
-                ]
-              }
-            },
-            {
-              "id": "f707e79c-a45f-3b4d-a01e-a484165bceca",
-              "name": "resources.rules.dlint-catastrophic-redos",
-              "shortDescription": {
-                "text": "Opengrep Finding: resources.rules.dlint-catastrophic-redos"
-              },
-              "fullDescription": {
-                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
-              },
-              "defaultConfiguration": {
-                "enabled": true,
-                "level": "error"
-              },
-              "help": {
-                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
-                "markdown": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/](https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/)\n - [https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/](https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/)\n"
-              },
-              "properties": {
-                "precision": "very-high",
-                "tags": [
-                  "resources.rules.dlint-catastrophic-redos"
                 ]
               }
             },
@@ -493,7 +469,7 @@
               }
             },
             {
-              "id": "e2c9c602-d165-321a-8454-ad6b4c7412d8",
+              "id": "f707e79c-a45f-3b4d-a01e-a484165bceca",
               "name": "resources.rules.dlint-catastrophic-redos",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.dlint-catastrophic-redos"
@@ -518,6 +494,30 @@
             },
             {
               "id": "823272b8-99f3-30d9-8e77-7fcc7b9d9c02",
+              "name": "resources.rules.dlint-catastrophic-redos",
+              "shortDescription": {
+                "text": "Opengrep Finding: resources.rules.dlint-catastrophic-redos"
+              },
+              "fullDescription": {
+                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "help": {
+                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/](https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/)\n - [https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/](https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "resources.rules.dlint-catastrophic-redos"
+                ]
+              }
+            },
+            {
+              "id": "e2c9c602-d165-321a-8454-ad6b4c7412d8",
               "name": "resources.rules.dlint-catastrophic-redos",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.dlint-catastrophic-redos"
@@ -638,7 +638,7 @@
               }
             },
             {
-              "id": "72a793f3-ccbb-3479-a635-a10c3bea389d",
+              "id": "9079e3a4-f634-3830-a4b7-df8d4348e546",
               "name": "resources.rules.dlint-catastrophic-redos",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.dlint-catastrophic-redos"
@@ -662,7 +662,7 @@
               }
             },
             {
-              "id": "9079e3a4-f634-3830-a4b7-df8d4348e546",
+              "id": "72a793f3-ccbb-3479-a635-a10c3bea389d",
               "name": "resources.rules.dlint-catastrophic-redos",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.dlint-catastrophic-redos"
@@ -1744,7 +1744,7 @@
               }
             },
             {
-              "id": "d6f0ef27-b681-3277-8969-269f712f517a",
+              "id": "1968306c-49ae-3f82-8972-c6a7427c9795",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -1768,7 +1768,7 @@
               }
             },
             {
-              "id": "1968306c-49ae-3f82-8972-c6a7427c9795",
+              "id": "d6f0ef27-b681-3277-8969-269f712f517a",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -1936,6 +1936,30 @@
               }
             },
             {
+              "id": "0dc33893-1ae4-3bc1-ace6-5bc9eea9d1a9",
+              "name": "resources.rules.return-not-in-function",
+              "shortDescription": {
+                "text": "Opengrep Finding: resources.rules.return-not-in-function"
+              },
+              "fullDescription": {
+                "text": "`return` only makes sense inside a function"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "warning"
+              },
+              "help": {
+                "text": "`return` only makes sense inside a function\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "`return` only makes sense inside a function\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "resources.rules.return-not-in-function"
+                ]
+              }
+            },
+            {
               "id": "89cb54a0-d6ce-35f3-814d-e0d314693717",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
@@ -1961,30 +1985,6 @@
             },
             {
               "id": "332b3866-5178-33d1-ad0d-db0a06b1e72a",
-              "name": "resources.rules.return-not-in-function",
-              "shortDescription": {
-                "text": "Opengrep Finding: resources.rules.return-not-in-function"
-              },
-              "fullDescription": {
-                "text": "`return` only makes sense inside a function"
-              },
-              "defaultConfiguration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "help": {
-                "text": "`return` only makes sense inside a function\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
-                "markdown": "`return` only makes sense inside a function\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>"
-              },
-              "properties": {
-                "precision": "very-high",
-                "tags": [
-                  "resources.rules.return-not-in-function"
-                ]
-              }
-            },
-            {
-              "id": "0dc33893-1ae4-3bc1-ace6-5bc9eea9d1a9",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -2152,7 +2152,7 @@
               }
             },
             {
-              "id": "4876247e-73e4-32dd-a813-432d57861786",
+              "id": "27889cef-c0d1-39cc-b1c7-c13f6f19c75b",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -2176,7 +2176,7 @@
               }
             },
             {
-              "id": "27889cef-c0d1-39cc-b1c7-c13f6f19c75b",
+              "id": "4876247e-73e4-32dd-a813-432d57861786",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -2344,7 +2344,7 @@
               }
             },
             {
-              "id": "ff0001b7-1dd1-3c2f-843f-ae090b15dfee",
+              "id": "0d3314ba-7007-340e-8b20-16245d8f0fdd",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -2368,7 +2368,7 @@
               }
             },
             {
-              "id": "0d3314ba-7007-340e-8b20-16245d8f0fdd",
+              "id": "ff0001b7-1dd1-3c2f-843f-ae090b15dfee",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -2440,7 +2440,7 @@
               }
             },
             {
-              "id": "592c4494-3e7d-3870-9f6b-4f26564693ae",
+              "id": "bc797310-c8b0-3bb3-8b73-813c1f59cd73",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -2464,7 +2464,7 @@
               }
             },
             {
-              "id": "bc797310-c8b0-3bb3-8b73-813c1f59cd73",
+              "id": "592c4494-3e7d-3870-9f6b-4f26564693ae",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -2536,7 +2536,7 @@
               }
             },
             {
-              "id": "99793801-5650-3966-9ca4-42cc11b82906",
+              "id": "269c2bd7-2757-3212-be18-634db5862fa4",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -2560,7 +2560,7 @@
               }
             },
             {
-              "id": "269c2bd7-2757-3212-be18-634db5862fa4",
+              "id": "99793801-5650-3966-9ca4-42cc11b82906",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -2632,7 +2632,7 @@
               }
             },
             {
-              "id": "0ed75719-1c69-36f7-9248-35644d70e203",
+              "id": "68d9dde4-aa24-3bcb-9db3-a6fae45d4777",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -2656,7 +2656,7 @@
               }
             },
             {
-              "id": "68d9dde4-aa24-3bcb-9db3-a6fae45d4777",
+              "id": "0ed75719-1c69-36f7-9248-35644d70e203",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -2728,7 +2728,7 @@
               }
             },
             {
-              "id": "e3fbc729-79bd-3694-9b8f-0564d35c2ddc",
+              "id": "f3d11abb-4bc2-38c9-b9b4-f0abceb12eb4",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -2752,7 +2752,7 @@
               }
             },
             {
-              "id": "f3d11abb-4bc2-38c9-b9b4-f0abceb12eb4",
+              "id": "e3fbc729-79bd-3694-9b8f-0564d35c2ddc",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -2824,7 +2824,7 @@
               }
             },
             {
-              "id": "b6113de3-742f-33d3-9fdf-ccb9fb45eecd",
+              "id": "cc0854bd-742f-3b3b-a1bc-d6feca11f4d6",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -2848,7 +2848,7 @@
               }
             },
             {
-              "id": "cc0854bd-742f-3b3b-a1bc-d6feca11f4d6",
+              "id": "b6113de3-742f-33d3-9fdf-ccb9fb45eecd",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -3016,7 +3016,7 @@
               }
             },
             {
-              "id": "8df481ed-dd07-314c-be18-b4275e3d008c",
+              "id": "1b52fbc1-e8b5-30c9-a8e9-a488676f9df5",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -3040,7 +3040,7 @@
               }
             },
             {
-              "id": "1b52fbc1-e8b5-30c9-a8e9-a488676f9df5",
+              "id": "8df481ed-dd07-314c-be18-b4275e3d008c",
               "name": "resources.rules.return-not-in-function",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.return-not-in-function"
@@ -3210,30 +3210,6 @@
               }
             },
             {
-              "id": "4acea928-1195-3eee-a6dc-4036629aeb58",
-              "name": "resources.rules.dangerous-subprocess-use",
-              "shortDescription": {
-                "text": "Opengrep Finding: resources.rules.dangerous-subprocess-use"
-              },
-              "fullDescription": {
-                "text": "Detected subprocess function '$FUNC' without a static string. If this data can be\ncontrolled by a malicious actor, it may be an instance of command injection.\nAudit the use of this call to ensure it is not controllable by an external resource.\nYou may consider using 'shlex.escape()'.\n"
-              },
-              "defaultConfiguration": {
-                "enabled": true,
-                "level": "warning"
-              },
-              "help": {
-                "text": "Detected subprocess function '$FUNC' without a static string. If this data can be\ncontrolled by a malicious actor, it may be an instance of command injection.\nAudit the use of this call to ensure it is not controllable by an external resource.\nYou may consider using 'shlex.escape()'.\n\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
-                "markdown": "Detected subprocess function '$FUNC' without a static string. If this data can be\ncontrolled by a malicious actor, it may be an instance of command injection.\nAudit the use of this call to ensure it is not controllable by an external resource.\nYou may consider using 'shlex.escape()'.\n\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://stackoverflow.com/questions/3172470/actual-meaning-of-shell-true-in-subprocess](https://stackoverflow.com/questions/3172470/actual-meaning-of-shell-true-in-subprocess)\n - [https://docs.python.org/3/library/subprocess.html](https://docs.python.org/3/library/subprocess.html)\n - [https://docs.python.org/3/library/shlex.html](https://docs.python.org/3/library/shlex.html)\n"
-              },
-              "properties": {
-                "precision": "very-high",
-                "tags": [
-                  "resources.rules.dangerous-subprocess-use"
-                ]
-              }
-            },
-            {
               "id": "42dd7445-a86e-32b0-97e1-3392da1a90c5",
               "name": "resources.rules.insecure-compile-use",
               "shortDescription": {
@@ -3254,6 +3230,30 @@
                 "precision": "very-high",
                 "tags": [
                   "resources.rules.insecure-compile-use"
+                ]
+              }
+            },
+            {
+              "id": "4acea928-1195-3eee-a6dc-4036629aeb58",
+              "name": "resources.rules.dangerous-subprocess-use",
+              "shortDescription": {
+                "text": "Opengrep Finding: resources.rules.dangerous-subprocess-use"
+              },
+              "fullDescription": {
+                "text": "Detected subprocess function '$FUNC' without a static string. If this data can be\ncontrolled by a malicious actor, it may be an instance of command injection.\nAudit the use of this call to ensure it is not controllable by an external resource.\nYou may consider using 'shlex.escape()'.\n"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "warning"
+              },
+              "help": {
+                "text": "Detected subprocess function '$FUNC' without a static string. If this data can be\ncontrolled by a malicious actor, it may be an instance of command injection.\nAudit the use of this call to ensure it is not controllable by an external resource.\nYou may consider using 'shlex.escape()'.\n\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Detected subprocess function '$FUNC' without a static string. If this data can be\ncontrolled by a malicious actor, it may be an instance of command injection.\nAudit the use of this call to ensure it is not controllable by an external resource.\nYou may consider using 'shlex.escape()'.\n\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://stackoverflow.com/questions/3172470/actual-meaning-of-shell-true-in-subprocess](https://stackoverflow.com/questions/3172470/actual-meaning-of-shell-true-in-subprocess)\n - [https://docs.python.org/3/library/subprocess.html](https://docs.python.org/3/library/subprocess.html)\n - [https://docs.python.org/3/library/shlex.html](https://docs.python.org/3/library/shlex.html)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "resources.rules.dangerous-subprocess-use"
                 ]
               }
             },
@@ -3306,7 +3306,7 @@
               }
             },
             {
-              "id": "1a28872d-1dcd-3602-afb0-a43cebb9a090",
+              "id": "7f15fa11-1210-34c8-9233-5f7846d1840a",
               "name": "resources.rules.insecure-use-strcat-fn",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.insecure-use-strcat-fn"
@@ -3330,7 +3330,7 @@
               }
             },
             {
-              "id": "7f15fa11-1210-34c8-9233-5f7846d1840a",
+              "id": "1a28872d-1dcd-3602-afb0-a43cebb9a090",
               "name": "resources.rules.insecure-use-strcat-fn",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.insecure-use-strcat-fn"
@@ -3570,6 +3570,30 @@
               }
             },
             {
+              "id": "da25ece3-62e4-31d0-9da5-2768341e821a",
+              "name": "resources.rules.dlint-catastrophic-redos",
+              "shortDescription": {
+                "text": "Opengrep Finding: resources.rules.dlint-catastrophic-redos"
+              },
+              "fullDescription": {
+                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "help": {
+                "text": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Regex `$X` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/](https://r2c.dev/blog/2020/finding-python-redos-bugs-at-scale-using-dlint-and-r2c/)\n - [https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/](https://r2c.dev/blog/2020/improving-redos-detection-with-dlint-and-r2c/)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "resources.rules.dlint-catastrophic-redos"
+                ]
+              }
+            },
+            {
               "id": "36c1e4f8-0a3a-3ef5-bb43-b11f662e4fd3",
               "name": "resources.rules.dlint-catastrophic-redos",
               "shortDescription": {
@@ -3643,6 +3667,54 @@
             },
             {
               "id": "ce101868-d7e7-3869-8f77-25ce0ff7df70",
+              "name": "resources.rules.arbitrary-sleep",
+              "shortDescription": {
+                "text": "Opengrep Finding: resources.rules.arbitrary-sleep"
+              },
+              "fullDescription": {
+                "text": "time.sleep() call; did you mean to leave this in?"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "help": {
+                "text": "time.sleep() call; did you mean to leave this in?\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "time.sleep() call; did you mean to leave this in?\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "resources.rules.arbitrary-sleep"
+                ]
+              }
+            },
+            {
+              "id": "ab850f8b-6d40-34b0-b31a-75558d995cb3",
+              "name": "resources.rules.arbitrary-sleep",
+              "shortDescription": {
+                "text": "Opengrep Finding: resources.rules.arbitrary-sleep"
+              },
+              "fullDescription": {
+                "text": "time.sleep() call; did you mean to leave this in?"
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "error"
+              },
+              "help": {
+                "text": "time.sleep() call; did you mean to leave this in?\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "time.sleep() call; did you mean to leave this in?\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "resources.rules.arbitrary-sleep"
+                ]
+              }
+            },
+            {
+              "id": "c5ec3d61-e2ba-3a46-8ff4-a0505b994815",
               "name": "resources.rules.arbitrary-sleep",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.arbitrary-sleep"
@@ -3786,7 +3858,7 @@
               }
             },
             {
-              "id": "566c7641-1be1-32f1-bb01-b82662369ecb",
+              "id": "c6e80298-7b02-3759-99e0-f7d64a9743f7",
               "name": "resources.rules.raptor-interesting-api-calls",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.raptor-interesting-api-calls"
@@ -3810,7 +3882,7 @@
               }
             },
             {
-              "id": "c6e80298-7b02-3759-99e0-f7d64a9743f7",
+              "id": "566c7641-1be1-32f1-bb01-b82662369ecb",
               "name": "resources.rules.raptor-interesting-api-calls",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.raptor-interesting-api-calls"
@@ -3882,7 +3954,7 @@
               }
             },
             {
-              "id": "b815d4cd-05d2-3adf-b49d-0e861019b92f",
+              "id": "a2f2190f-e303-3f7e-bb23-fef3a5f47302",
               "name": "resources.rules.raptor-interesting-api-calls",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.raptor-interesting-api-calls"
@@ -3906,7 +3978,31 @@
               }
             },
             {
-              "id": "a2f2190f-e303-3f7e-bb23-fef3a5f47302",
+              "id": "46de374f-07dc-3de8-860c-a2636c15eaaf",
+              "name": "resources.rules.raptor-interesting-api-calls",
+              "shortDescription": {
+                "text": "Opengrep Finding: resources.rules.raptor-interesting-api-calls"
+              },
+              "fullDescription": {
+                "text": "Locate all calls to interesting and potentially insecure API functions (candidate points). The auditor can backtrace from these candidate points to find pathways allowing access from untrusted input."
+              },
+              "defaultConfiguration": {
+                "enabled": true,
+                "level": "warning"
+              },
+              "help": {
+                "text": "Locate all calls to interesting and potentially insecure API functions (candidate points). The auditor can backtrace from these candidate points to find pathways allowing access from untrusted input.\n💎 Enable cross-file analysis and Pro rules for free at sg.run/pro",
+                "markdown": "Locate all calls to interesting and potentially insecure API functions (candidate points). The auditor can backtrace from these candidate points to find pathways allowing access from untrusted input.\n\n#### 💎 Enable cross-file analysis and Pro rules for free at <a href='https://sg.run/pro'>sg.run/pro</a>\n\n<b>References:</b>\n - [https://github.com/0xdea/ghidra-scripts/blob/main/Rhabdomancer.java](https://github.com/0xdea/ghidra-scripts/blob/main/Rhabdomancer.java)\n - [https://github.com/x509cert/banned/blob/master/banned.h](https://github.com/x509cert/banned/blob/master/banned.h)\n - [https://g.co/kgs/PCHQjJ](https://g.co/kgs/PCHQjJ)\n - [https://www.sei.cmu.edu/downloads/sei-cert-c-coding-standard-2016-v01.pdf](https://www.sei.cmu.edu/downloads/sei-cert-c-coding-standard-2016-v01.pdf)\n - [https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/28719-banned-api-usage-use-updated-function-replacement](https://learn.microsoft.com/en-us/windows-hardware/drivers/devtest/28719-banned-api-usage-use-updated-function-replacement)\n"
+              },
+              "properties": {
+                "precision": "very-high",
+                "tags": [
+                  "resources.rules.raptor-interesting-api-calls"
+                ]
+              }
+            },
+            {
+              "id": "b815d4cd-05d2-3adf-b49d-0e861019b92f",
               "name": "resources.rules.raptor-interesting-api-calls",
               "shortDescription": {
                 "text": "Opengrep Finding: resources.rules.raptor-interesting-api-calls"
@@ -3996,7 +4092,7 @@
           "properties": {}
         },
         {
-          "ruleId": "aa15b5e7-486d-3487-b744-da57483fe1bb",
+          "ruleId": "83992d10-4727-326f-ae06-dcca5ba51ecc",
           "kind": "fail",
           "level": "warning",
           "message": {
@@ -4010,19 +4106,19 @@
                   "uriBaseId": "%SRCROOT%"
                 },
                 "region": {
-                  "startLine": 107,
-                  "startColumn": 44,
-                  "endLine": 107,
-                  "endColumn": 69,
+                  "startLine": 115,
+                  "startColumn": 45,
+                  "endLine": 115,
+                  "endColumn": 73,
                   "snippet": {
-                    "text": "    SmallVector<unsigned> elemsPerThread = getElemsPerThread(rtType);"
+                    "text": "    SmallVector<unsigned> contigPerThread = getContigPerThread(encoding);"
                   }
                 }
               }
             }
           ],
           "fingerprints": {
-            "matchBasedId/v1": "2216b89ee18565da594d7ff460fc2994d515c5e4420dbaf7fd171c6d057cfa62beaf5033da41c9cb9b029dcbcd7fa216703881246a044ba92ccd1fe7a4bc8f8e_0"
+            "matchBasedId/v1": "a7362828b90876671202a70b2729840a3fac38c01cae01f13b92313ef023fb99742953ee9b38ae2f62128387d09631924cb09485a789ee03892e24191ffa428d_0"
           },
           "properties": {}
         },
@@ -4058,7 +4154,7 @@
           "properties": {}
         },
         {
-          "ruleId": "83992d10-4727-326f-ae06-dcca5ba51ecc",
+          "ruleId": "aa15b5e7-486d-3487-b744-da57483fe1bb",
           "kind": "fail",
           "level": "warning",
           "message": {
@@ -4072,50 +4168,50 @@
                   "uriBaseId": "%SRCROOT%"
                 },
                 "region": {
-                  "startLine": 115,
-                  "startColumn": 45,
-                  "endLine": 115,
-                  "endColumn": 73,
+                  "startLine": 107,
+                  "startColumn": 44,
+                  "endLine": 107,
+                  "endColumn": 69,
                   "snippet": {
-                    "text": "    SmallVector<unsigned> contigPerThread = getContigPerThread(encoding);"
+                    "text": "    SmallVector<unsigned> elemsPerThread = getElemsPerThread(rtType);"
                   }
                 }
               }
             }
           ],
           "fingerprints": {
-            "matchBasedId/v1": "a7362828b90876671202a70b2729840a3fac38c01cae01f13b92313ef023fb99742953ee9b38ae2f62128387d09631924cb09485a789ee03892e24191ffa428d_0"
+            "matchBasedId/v1": "2216b89ee18565da594d7ff460fc2994d515c5e4420dbaf7fd171c6d057cfa62beaf5033da41c9cb9b029dcbcd7fa216703881246a044ba92ccd1fe7a4bc8f8e_0"
           },
           "properties": {}
         },
         {
-          "ruleId": "fad5fccf-ac3c-343e-b8de-7bb9d96b5459",
+          "ruleId": "23889290-c309-3232-aed2-b5f65a5b6383",
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Regex `r'\\(.*?\\)'` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+            "text": "Most codebases define assertion macros which compile to a no-op on non-debug builds. If assertions are the only line of defense against untrusted input, the software may be exposed to attacks that leverage the lack of proper input checks."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "python/perf-kernels/gemm.py",
+                  "uri": "include/triton/Tools/LinearLayout.h",
                   "uriBaseId": "%SRCROOT%"
                 },
                 "region": {
-                  "startLine": 447,
-                  "startColumn": 11,
-                  "endLine": 447,
-                  "endColumn": 43,
+                  "startLine": 423,
+                  "startColumn": 5,
+                  "endLine": 423,
+                  "endColumn": 36,
                   "snippet": {
-                    "text": "    res = re.findall(r'\\(.*?\\)', provider)"
+                    "text": "    assert(pos < it->second.size());"
                   }
                 }
               }
             }
           ],
           "fingerprints": {
-            "matchBasedId/v1": "beb6d260b4853e98e384fe9d793e6647f73223b6b4cbaaf1b465081338a70cb3a684fee62b13ae9411c8dae042eff20f4f26c862fd503ba04a75baaa2ea48fe3_0"
+            "matchBasedId/v1": "ea5eb68cd419c393dd2b03ff4e64b37348de5a23ce301e9aa0694a085079ee79dce681c48e0a7977fe9d82f9c4135c8931f4d281901d48c923beb0807a54d993_0"
           },
           "properties": {}
         },
@@ -4151,33 +4247,33 @@
           "properties": {}
         },
         {
-          "ruleId": "23889290-c309-3232-aed2-b5f65a5b6383",
+          "ruleId": "fad5fccf-ac3c-343e-b8de-7bb9d96b5459",
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Most codebases define assertion macros which compile to a no-op on non-debug builds. If assertions are the only line of defense against untrusted input, the software may be exposed to attacks that leverage the lack of proper input checks."
+            "text": "Regex `r'\\(.*?\\)'` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "include/triton/Tools/LinearLayout.h",
+                  "uri": "python/perf-kernels/gemm.py",
                   "uriBaseId": "%SRCROOT%"
                 },
                 "region": {
-                  "startLine": 423,
-                  "startColumn": 5,
-                  "endLine": 423,
-                  "endColumn": 36,
+                  "startLine": 447,
+                  "startColumn": 11,
+                  "endLine": 447,
+                  "endColumn": 43,
                   "snippet": {
-                    "text": "    assert(pos < it->second.size());"
+                    "text": "    res = re.findall(r'\\(.*?\\)', provider)"
                   }
                 }
               }
             }
           ],
           "fingerprints": {
-            "matchBasedId/v1": "ea5eb68cd419c393dd2b03ff4e64b37348de5a23ce301e9aa0694a085079ee79dce681c48e0a7977fe9d82f9c4135c8931f4d281901d48c923beb0807a54d993_0"
+            "matchBasedId/v1": "beb6d260b4853e98e384fe9d793e6647f73223b6b4cbaaf1b465081338a70cb3a684fee62b13ae9411c8dae042eff20f4f26c862fd503ba04a75baaa2ea48fe3_0"
           },
           "properties": {}
         },
@@ -4244,7 +4340,7 @@
           "properties": {}
         },
         {
-          "ruleId": "1349dfb3-00c4-3bd3-bd97-cad79cbb152c",
+          "ruleId": "2c8401b9-3906-316f-b7d5-a4e9a910ee03",
           "kind": "fail",
           "level": "warning",
           "message": {
@@ -4258,19 +4354,19 @@
                   "uriBaseId": "%SRCROOT%"
                 },
                 "region": {
-                  "startLine": 214,
+                  "startLine": 221,
                   "startColumn": 13,
-                  "endLine": 215,
+                  "endLine": 222,
                   "endColumn": 72,
                   "snippet": {
-                    "text": "    lambda: matmul.apply(A, B, C, bias, P, locks, total_sm, BLK_M, BLK_N, BLK_K, gsize_m, two_tiles, num_stages,\n                         num_warps, waves_per_eu, mfmaInstrSize, kpack))"
+                    "text": "    lambda: matmul.apply(A, B, C, bias, P, locks, total_sm * 2, BLK_M, BLK_N, BLK_K, gsize_m, two_tiles, num_stages,\n                         num_warps, waves_per_eu, mfmaInstrSize, kpack))"
                   }
                 }
               }
             }
           ],
           "fingerprints": {
-            "matchBasedId/v1": "d77888f2ed8d77270eb33058fef6c468033b0f12a6ad0ddda1b62d77eb8d6c9a1caf63286d340082c7fd9c3171863c16f57cc71aec0f5319a1169324b2405cc2_2"
+            "matchBasedId/v1": "d77888f2ed8d77270eb33058fef6c468033b0f12a6ad0ddda1b62d77eb8d6c9a1caf63286d340082c7fd9c3171863c16f57cc71aec0f5319a1169324b2405cc2_3"
           },
           "properties": {}
         },
@@ -4306,7 +4402,7 @@
           "properties": {}
         },
         {
-          "ruleId": "2c8401b9-3906-316f-b7d5-a4e9a910ee03",
+          "ruleId": "1349dfb3-00c4-3bd3-bd97-cad79cbb152c",
           "kind": "fail",
           "level": "warning",
           "message": {
@@ -4320,50 +4416,19 @@
                   "uriBaseId": "%SRCROOT%"
                 },
                 "region": {
-                  "startLine": 221,
+                  "startLine": 214,
                   "startColumn": 13,
-                  "endLine": 222,
+                  "endLine": 215,
                   "endColumn": 72,
                   "snippet": {
-                    "text": "    lambda: matmul.apply(A, B, C, bias, P, locks, total_sm * 2, BLK_M, BLK_N, BLK_K, gsize_m, two_tiles, num_stages,\n                         num_warps, waves_per_eu, mfmaInstrSize, kpack))"
+                    "text": "    lambda: matmul.apply(A, B, C, bias, P, locks, total_sm, BLK_M, BLK_N, BLK_K, gsize_m, two_tiles, num_stages,\n                         num_warps, waves_per_eu, mfmaInstrSize, kpack))"
                   }
                 }
               }
             }
           ],
           "fingerprints": {
-            "matchBasedId/v1": "d77888f2ed8d77270eb33058fef6c468033b0f12a6ad0ddda1b62d77eb8d6c9a1caf63286d340082c7fd9c3171863c16f57cc71aec0f5319a1169324b2405cc2_3"
-          },
-          "properties": {}
-        },
-        {
-          "ruleId": "d56f2fc8-b375-31e4-a559-dd3032609a05",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Untrusted user input in `importlib.import_module()` function allows an attacker to load arbitrary code. Avoid dynamic values in `importlib.import_module()` or use a whitelist to prevent running untrusted code."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/perf-kernels/streamk/tune_streamk.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 551,
-                  "startColumn": 14,
-                  "endLine": 551,
-                  "endColumn": 50,
-                  "snippet": {
-                    "text": "    module = importlib.import_module(module_name)"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "24c0651b160fb38de8ca2fef5ee6aefaa3e0b15ff1cf9194edf3bd97d28eae3bc72fd9763fb057438996a0313495a5021a52711c40d2cec5d28392b1906e3048_0"
+            "matchBasedId/v1": "d77888f2ed8d77270eb33058fef6c468033b0f12a6ad0ddda1b62d77eb8d6c9a1caf63286d340082c7fd9c3171863c16f57cc71aec0f5319a1169324b2405cc2_2"
           },
           "properties": {}
         },
@@ -4399,33 +4464,33 @@
           "properties": {}
         },
         {
-          "ruleId": "4c735a6a-b21c-3a9b-b0fa-1f02cbf0344b",
+          "ruleId": "d56f2fc8-b375-31e4-a559-dd3032609a05",
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Regex `r'^\\.(\\w+):'` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+            "text": "Untrusted user input in `importlib.import_module()` function allows an attacker to load arbitrary code. Avoid dynamic values in `importlib.import_module()` or use a whitelist to prevent running untrusted code."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "python/perf-kernels/tools/amdgcn-cfg/amdgcn-cfg.py",
+                  "uri": "python/perf-kernels/streamk/tune_streamk.py",
                   "uriBaseId": "%SRCROOT%"
                 },
                 "region": {
-                  "startLine": 74,
-                  "startColumn": 17,
-                  "endLine": 74,
-                  "endColumn": 46,
+                  "startLine": 551,
+                  "startColumn": 14,
+                  "endLine": 551,
+                  "endColumn": 50,
                   "snippet": {
-                    "text": "        match = re.search(r'^\\.(\\w+):', line)"
+                    "text": "    module = importlib.import_module(module_name)"
                   }
                 }
               }
             }
           ],
           "fingerprints": {
-            "matchBasedId/v1": "a8ea2fd56bd01efab39b0d048c9bcebae78451edad8964fe4960d559921d86492714ee0cffcaaccc815de7da0fa286290d926b06c254bc72cf1edfcc03267b34_0"
+            "matchBasedId/v1": "24c0651b160fb38de8ca2fef5ee6aefaa3e0b15ff1cf9194edf3bd97d28eae3bc72fd9763fb057438996a0313495a5021a52711c40d2cec5d28392b1906e3048_0"
           },
           "properties": {}
         },
@@ -4461,6 +4526,37 @@
           "properties": {}
         },
         {
+          "ruleId": "4c735a6a-b21c-3a9b-b0fa-1f02cbf0344b",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Regex `r'^\\.(\\w+):'` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/perf-kernels/tools/amdgcn-cfg/amdgcn-cfg.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 74,
+                  "startColumn": 17,
+                  "endLine": 74,
+                  "endColumn": 46,
+                  "snippet": {
+                    "text": "        match = re.search(r'^\\.(\\w+):', line)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "a8ea2fd56bd01efab39b0d048c9bcebae78451edad8964fe4960d559921d86492714ee0cffcaaccc815de7da0fa286290d926b06c254bc72cf1edfcc03267b34_0"
+          },
+          "properties": {}
+        },
+        {
           "ruleId": "e71c7249-ab20-30fa-8c82-1aa003fee50f",
           "kind": "fail",
           "level": "warning",
@@ -4488,37 +4584,6 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "2e37a52dd843512d038624c2e92dc353e1a1dbaf598c0da4536798cf03096d45b475ef545640492422934ae993dc4283ae77bed5fe0bd3fcc4c09738c04425de_0"
-          },
-          "properties": {}
-        },
-        {
-          "ruleId": "f707e79c-a45f-3b4d-a01e-a484165bceca",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Regex `r'(c)?branch.*\\s+\\.?(.*)'` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/perf-kernels/tools/amdgcn-cfg/amdgcn-cfg.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 108,
-                  "startColumn": 18,
-                  "endLine": 108,
-                  "endColumn": 60,
-                  "snippet": {
-                    "text": "        branch = re.search(r'(c)?branch.*\\s+\\.?(.*)', line)"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "24518c2da31184cc140430a1d769b62fdb8f07a04cd1a2e19d09fac740cf559357b8b5ed46007a072c1100935c372bb8d3e8b2919f7a4ac94358f75eea05ab46_0"
           },
           "properties": {}
         },
@@ -4585,33 +4650,33 @@
           "properties": {}
         },
         {
-          "ruleId": "e2c9c602-d165-321a-8454-ad6b4c7412d8",
+          "ruleId": "f707e79c-a45f-3b4d-a01e-a484165bceca",
           "kind": "fail",
           "level": "warning",
           "message": {
-            "text": "Regex `\"([a-zA-Z]*)([0-9]*)\"` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+            "text": "Regex `r'(c)?branch.*\\s+\\.?(.*)'` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "python/perf-kernels/tools/tune_gemm/one_config.py",
+                  "uri": "python/perf-kernels/tools/amdgcn-cfg/amdgcn-cfg.py",
                   "uriBaseId": "%SRCROOT%"
                 },
                 "region": {
-                  "startLine": 68,
-                  "startColumn": 17,
-                  "endLine": 68,
-                  "endColumn": 54,
+                  "startLine": 108,
+                  "startColumn": 18,
+                  "endLine": 108,
+                  "endColumn": 60,
                   "snippet": {
-                    "text": "        match = re.search(\"([a-zA-Z]*)([0-9]*)\", val)"
+                    "text": "        branch = re.search(r'(c)?branch.*\\s+\\.?(.*)', line)"
                   }
                 }
               }
             }
           ],
           "fingerprints": {
-            "matchBasedId/v1": "bf04b3815620be8ab6bc41158d4b1a9c7158059f3fc1a40dc6787ed18863588fa15ae39b8ab05bccfb29d0d21e6f2cf2a7686683730ef28b844483894cfe8c63_0"
+            "matchBasedId/v1": "24518c2da31184cc140430a1d769b62fdb8f07a04cd1a2e19d09fac740cf559357b8b5ed46007a072c1100935c372bb8d3e8b2919f7a4ac94358f75eea05ab46_0"
           },
           "properties": {}
         },
@@ -4643,6 +4708,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "6d415616864d2ac44488e93bed29707d05641155f6df7ac6e4634b55553639c2d0511888c263ff4a5a53adbe0404a1ae15b71337db50087e15a77ae383f47d81_0"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "e2c9c602-d165-321a-8454-ad6b4c7412d8",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Regex `\"([a-zA-Z]*)([0-9]*)\"` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/perf-kernels/tools/tune_gemm/one_config.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 68,
+                  "startColumn": 17,
+                  "endLine": 68,
+                  "endColumn": 54,
+                  "snippet": {
+                    "text": "        match = re.search(\"([a-zA-Z]*)([0-9]*)\", val)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "bf04b3815620be8ab6bc41158d4b1a9c7158059f3fc1a40dc6787ed18863588fa15ae39b8ab05bccfb29d0d21e6f2cf2a7686683730ef28b844483894cfe8c63_0"
           },
           "properties": {}
         },
@@ -4771,37 +4867,6 @@
           "properties": {}
         },
         {
-          "ruleId": "72a793f3-ccbb-3479-a635-a10c3bea389d",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Regex `r\"version\\s*(?P<major>\\d+)\\.(?P<minor>\\d+)([\\d.]+)?\"` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/setup.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 368,
-                  "startColumn": 17,
-                  "endLine": 368,
-                  "endColumn": 94,
-                  "snippet": {
-                    "text": "        match = re.search(r\"version\\s*(?P<major>\\d+)\\.(?P<minor>\\d+)([\\d.]+)?\", out.decode())"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "565ca1a38484d0b92a1cfed975c72bcef982d04711df68d55d103f78cc98008ae3fbf66ac610757918d62448ddb2e3dd77952a383262c399a446439696896759_0"
-          },
-          "properties": {}
-        },
-        {
           "ruleId": "9079e3a4-f634-3830-a4b7-df8d4348e546",
           "kind": "fail",
           "level": "warning",
@@ -4829,6 +4894,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "131c2b2853f8b284044adc8e709b4ce82711277602e585860e8feabb6b6c25cf4c5633fb88379f414beb4e7716c4cc39ff822d28dd4f0963bb90ae684548e1e5_0"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "72a793f3-ccbb-3479-a635-a10c3bea389d",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Regex `r\"version\\s*(?P<major>\\d+)\\.(?P<minor>\\d+)([\\d.]+)?\"` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/setup.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 368,
+                  "startColumn": 17,
+                  "endLine": 368,
+                  "endColumn": 94,
+                  "snippet": {
+                    "text": "        match = re.search(r\"version\\s*(?P<major>\\d+)\\.(?P<minor>\\d+)([\\d.]+)?\", out.decode())"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "565ca1a38484d0b92a1cfed975c72bcef982d04711df68d55d103f78cc98008ae3fbf66ac610757918d62448ddb2e3dd77952a383262c399a446439696896759_0"
           },
           "properties": {}
         },
@@ -6197,37 +6293,6 @@
           "properties": {}
         },
         {
-          "ruleId": "d6f0ef27-b681-3277-8969-269f712f517a",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "`return` only makes sense inside a function"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/triton/runtime/interpreter.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 425,
-                  "startColumn": 50,
-                  "endLine": 425,
-                  "endColumn": 85,
-                  "snippet": {
-                    "text": "    create_precise_divf = lambda self, lhs, rhs: self.binary_op(lhs, rhs, np.divide)"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_13"
-          },
-          "properties": {}
-        },
-        {
           "ruleId": "1968306c-49ae-3f82-8972-c6a7427c9795",
           "kind": "fail",
           "level": "warning",
@@ -6255,6 +6320,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_14"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "d6f0ef27-b681-3277-8969-269f712f517a",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "`return` only makes sense inside a function"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/runtime/interpreter.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 425,
+                  "startColumn": 50,
+                  "endLine": 425,
+                  "endColumn": 85,
+                  "snippet": {
+                    "text": "    create_precise_divf = lambda self, lhs, rhs: self.binary_op(lhs, rhs, np.divide)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_13"
           },
           "properties": {}
         },
@@ -6445,6 +6541,37 @@
           "properties": {}
         },
         {
+          "ruleId": "0dc33893-1ae4-3bc1-ace6-5bc9eea9d1a9",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "`return` only makes sense inside a function"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/runtime/interpreter.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 435,
+                  "startColumn": 43,
+                  "endLine": 435,
+                  "endColumn": 79,
+                  "snippet": {
+                    "text": "    create_minsi = lambda self, lhs, rhs: self.binary_op(lhs, rhs, np.minimum)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_22"
+          },
+          "properties": {}
+        },
+        {
           "ruleId": "89cb54a0-d6ce-35f3-814d-e0d314693717",
           "kind": "fail",
           "level": "warning",
@@ -6503,37 +6630,6 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_23"
-          },
-          "properties": {}
-        },
-        {
-          "ruleId": "0dc33893-1ae4-3bc1-ace6-5bc9eea9d1a9",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "`return` only makes sense inside a function"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/triton/runtime/interpreter.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 435,
-                  "startColumn": 43,
-                  "endLine": 435,
-                  "endColumn": 79,
-                  "snippet": {
-                    "text": "    create_minsi = lambda self, lhs, rhs: self.binary_op(lhs, rhs, np.minimum)"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_22"
           },
           "properties": {}
         },
@@ -6724,37 +6820,6 @@
           "properties": {}
         },
         {
-          "ruleId": "4876247e-73e4-32dd-a813-432d57861786",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "`return` only makes sense inside a function"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/triton/runtime/interpreter.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 444,
-                  "startColumn": 45,
-                  "endLine": 444,
-                  "endColumn": 78,
-                  "snippet": {
-                    "text": "    create_icmpSLT = lambda self, lhs, rhs: self.binary_op(lhs, rhs, np.less)"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_31"
-          },
-          "properties": {}
-        },
-        {
           "ruleId": "27889cef-c0d1-39cc-b1c7-c13f6f19c75b",
           "kind": "fail",
           "level": "warning",
@@ -6782,6 +6847,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_30"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "4876247e-73e4-32dd-a813-432d57861786",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "`return` only makes sense inside a function"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/runtime/interpreter.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 444,
+                  "startColumn": 45,
+                  "endLine": 444,
+                  "endColumn": 78,
+                  "snippet": {
+                    "text": "    create_icmpSLT = lambda self, lhs, rhs: self.binary_op(lhs, rhs, np.less)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_31"
           },
           "properties": {}
         },
@@ -6972,37 +7068,6 @@
           "properties": {}
         },
         {
-          "ruleId": "ff0001b7-1dd1-3c2f-843f-ae090b15dfee",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "`return` only makes sense inside a function"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/triton/runtime/interpreter.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 452,
-                  "startColumn": 44,
-                  "endLine": 452,
-                  "endColumn": 82,
-                  "snippet": {
-                    "text": "    create_icmpNE = lambda self, lhs, rhs: self.binary_op(lhs, rhs, np.not_equal)"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_39"
-          },
-          "properties": {}
-        },
-        {
           "ruleId": "0d3314ba-7007-340e-8b20-16245d8f0fdd",
           "kind": "fail",
           "level": "warning",
@@ -7030,6 +7095,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_38"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "ff0001b7-1dd1-3c2f-843f-ae090b15dfee",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "`return` only makes sense inside a function"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/runtime/interpreter.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 452,
+                  "startColumn": 44,
+                  "endLine": 452,
+                  "endColumn": 82,
+                  "snippet": {
+                    "text": "    create_icmpNE = lambda self, lhs, rhs: self.binary_op(lhs, rhs, np.not_equal)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_39"
           },
           "properties": {}
         },
@@ -7096,37 +7192,6 @@
           "properties": {}
         },
         {
-          "ruleId": "592c4494-3e7d-3870-9f6b-4f26564693ae",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "`return` only makes sense inside a function"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/triton/runtime/interpreter.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 456,
-                  "startColumn": 45,
-                  "endLine": 456,
-                  "endColumn": 87,
-                  "snippet": {
-                    "text": "    create_fcmpOGE = lambda self, lhs, rhs: self.binary_op(lhs, rhs, np.greater_equal)"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_43"
-          },
-          "properties": {}
-        },
-        {
           "ruleId": "bc797310-c8b0-3bb3-8b73-813c1f59cd73",
           "kind": "fail",
           "level": "warning",
@@ -7154,6 +7219,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_42"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "592c4494-3e7d-3870-9f6b-4f26564693ae",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "`return` only makes sense inside a function"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/runtime/interpreter.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 456,
+                  "startColumn": 45,
+                  "endLine": 456,
+                  "endColumn": 87,
+                  "snippet": {
+                    "text": "    create_fcmpOGE = lambda self, lhs, rhs: self.binary_op(lhs, rhs, np.greater_equal)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_43"
           },
           "properties": {}
         },
@@ -7220,37 +7316,6 @@
           "properties": {}
         },
         {
-          "ruleId": "99793801-5650-3966-9ca4-42cc11b82906",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "`return` only makes sense inside a function"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/triton/runtime/interpreter.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 460,
-                  "startColumn": 45,
-                  "endLine": 460,
-                  "endColumn": 81,
-                  "snippet": {
-                    "text": "    create_fcmpUGT = lambda self, lhs, rhs: self.binary_op(lhs, rhs, np.greater)"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_47"
-          },
-          "properties": {}
-        },
-        {
           "ruleId": "269c2bd7-2757-3212-be18-634db5862fa4",
           "kind": "fail",
           "level": "warning",
@@ -7278,6 +7343,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_46"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "99793801-5650-3966-9ca4-42cc11b82906",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "`return` only makes sense inside a function"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/runtime/interpreter.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 460,
+                  "startColumn": 45,
+                  "endLine": 460,
+                  "endColumn": 81,
+                  "snippet": {
+                    "text": "    create_fcmpUGT = lambda self, lhs, rhs: self.binary_op(lhs, rhs, np.greater)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_47"
           },
           "properties": {}
         },
@@ -7344,37 +7440,6 @@
           "properties": {}
         },
         {
-          "ruleId": "0ed75719-1c69-36f7-9248-35644d70e203",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "`return` only makes sense inside a function"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/triton/runtime/interpreter.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 464,
-                  "startColumn": 45,
-                  "endLine": 464,
-                  "endColumn": 83,
-                  "snippet": {
-                    "text": "    create_fcmpUNE = lambda self, lhs, rhs: self.binary_op(lhs, rhs, np.not_equal)"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_51"
-          },
-          "properties": {}
-        },
-        {
           "ruleId": "68d9dde4-aa24-3bcb-9db3-a6fae45d4777",
           "kind": "fail",
           "level": "warning",
@@ -7402,6 +7467,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_50"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "0ed75719-1c69-36f7-9248-35644d70e203",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "`return` only makes sense inside a function"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/runtime/interpreter.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 464,
+                  "startColumn": 45,
+                  "endLine": 464,
+                  "endColumn": 83,
+                  "snippet": {
+                    "text": "    create_fcmpUNE = lambda self, lhs, rhs: self.binary_op(lhs, rhs, np.not_equal)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_51"
           },
           "properties": {}
         },
@@ -7468,37 +7564,6 @@
           "properties": {}
         },
         {
-          "ruleId": "e3fbc729-79bd-3694-9b8f-0564d35c2ddc",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "`return` only makes sense inside a function"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/triton/runtime/interpreter.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 500,
-                  "startColumn": 63,
-                  "endLine": 500,
-                  "endColumn": 100,
-                  "snippet": {
-                    "text": "    create_clampf = lambda self, arg, lo, hi, propagate_nans: self.ternary_op(arg, lo, hi, np.clip)"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_55"
-          },
-          "properties": {}
-        },
-        {
           "ruleId": "f3d11abb-4bc2-38c9-b9b4-f0abceb12eb4",
           "kind": "fail",
           "level": "warning",
@@ -7526,6 +7591,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_54"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "e3fbc729-79bd-3694-9b8f-0564d35c2ddc",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "`return` only makes sense inside a function"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/runtime/interpreter.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 500,
+                  "startColumn": 63,
+                  "endLine": 500,
+                  "endColumn": 100,
+                  "snippet": {
+                    "text": "    create_clampf = lambda self, arg, lo, hi, propagate_nans: self.ternary_op(arg, lo, hi, np.clip)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_55"
           },
           "properties": {}
         },
@@ -7592,37 +7688,6 @@
           "properties": {}
         },
         {
-          "ruleId": "b6113de3-742f-33d3-9fdf-ccb9fb45eecd",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "`return` only makes sense inside a function"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/triton/runtime/interpreter.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 522,
-                  "startColumn": 37,
-                  "endLine": 522,
-                  "endColumn": 64,
-                  "snippet": {
-                    "text": "    create_exp2 = lambda self, arg: self.unary_op(arg, np.exp2)"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_59"
-          },
-          "properties": {}
-        },
-        {
           "ruleId": "cc0854bd-742f-3b3b-a1bc-d6feca11f4d6",
           "kind": "fail",
           "level": "warning",
@@ -7650,6 +7715,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_58"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "b6113de3-742f-33d3-9fdf-ccb9fb45eecd",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "`return` only makes sense inside a function"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/runtime/interpreter.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 522,
+                  "startColumn": 37,
+                  "endLine": 522,
+                  "endColumn": 64,
+                  "snippet": {
+                    "text": "    create_exp2 = lambda self, arg: self.unary_op(arg, np.exp2)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_59"
           },
           "properties": {}
         },
@@ -7840,37 +7936,6 @@
           "properties": {}
         },
         {
-          "ruleId": "8df481ed-dd07-314c-be18-b4275e3d008c",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "`return` only makes sense inside a function"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/triton/runtime/interpreter.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 530,
-                  "startColumn": 36,
-                  "endLine": 530,
-                  "endColumn": 62,
-                  "snippet": {
-                    "text": "    create_sin = lambda self, arg: self.unary_op(arg, np.sin)"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_67"
-          },
-          "properties": {}
-        },
-        {
           "ruleId": "1b52fbc1-e8b5-30c9-a8e9-a488676f9df5",
           "kind": "fail",
           "level": "warning",
@@ -7898,6 +7963,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_66"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "8df481ed-dd07-314c-be18-b4275e3d008c",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "`return` only makes sense inside a function"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/runtime/interpreter.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 530,
+                  "startColumn": 36,
+                  "endLine": 530,
+                  "endColumn": 62,
+                  "snippet": {
+                    "text": "    create_sin = lambda self, arg: self.unary_op(arg, np.sin)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "868d704833ae237b36d9ed1217c2aacae8343af292da25715317fb44e9a70a52d1abb45d80887ef7b76c8f2ca8e222d32c3e37a14c01da13a4bb6c4f27df55c0_67"
           },
           "properties": {}
         },
@@ -8088,37 +8184,6 @@
           "properties": {}
         },
         {
-          "ruleId": "4acea928-1195-3eee-a6dc-4036629aeb58",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Detected subprocess function 'check_output' without a static string. If this data can be\ncontrolled by a malicious actor, it may be an instance of command injection.\nAudit the use of this call to ensure it is not controllable by an external resource.\nYou may consider using 'shlex.escape()'.\n"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/triton/testing.py",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 14,
-                  "startColumn": 11,
-                  "endLine": 14,
-                  "endColumn": 39,
-                  "snippet": {
-                    "text": "    out = subprocess.check_output(cmd)"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "b9ee9bab46b6717d4d417bffdfe17c62a025626f194165cf7d10ff8fca012d888abd8c0e08a7d5b71832a78adb5115e5ce9ec034829f02776a0eb066c6a4b7ef_0"
-          },
-          "properties": {}
-        },
-        {
           "ruleId": "42dd7445-a86e-32b0-97e1-3392da1a90c5",
           "kind": "fail",
           "level": "warning",
@@ -8146,6 +8211,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "534e3e15c4bfc189aa0fc8d9ce40afea26b44758d02b3b9f1176c532c4f285a629e711776ea130e744b361e42391429ada0519ddfc7a8de9062259fb2c63698f_0"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "4acea928-1195-3eee-a6dc-4036629aeb58",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Detected subprocess function 'check_output' without a static string. If this data can be\ncontrolled by a malicious actor, it may be an instance of command injection.\nAudit the use of this call to ensure it is not controllable by an external resource.\nYou may consider using 'shlex.escape()'.\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/testing.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 11,
+                  "endLine": 14,
+                  "endColumn": 39,
+                  "snippet": {
+                    "text": "    out = subprocess.check_output(cmd)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "b9ee9bab46b6717d4d417bffdfe17c62a025626f194165cf7d10ff8fca012d888abd8c0e08a7d5b71832a78adb5115e5ce9ec034829f02776a0eb066c6a4b7ef_0"
           },
           "properties": {}
         },
@@ -8212,37 +8308,6 @@
           "properties": {}
         },
         {
-          "ruleId": "1a28872d-1dcd-3602-afb0-a43cebb9a090",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Finding triggers whenever there is a strcat or strncat used.\nThis is an issue because strcat or strncat can lead to buffer overflow vulns.\nFix this by using strcat_s instead.\n"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "python/triton/tools/compile.c",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 21,
-                  "startColumn": 5,
-                  "endLine": 21,
-                  "endColumn": 21,
-                  "snippet": {
-                    "text": "    strcat(err, str);"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "c19d0a5245207b97f37dbceb138e5ed907abb62f116bff38d4b2e26122e49e948aa966952c60634de2efd01d71cf3962bf4c984a2566a6f4a891c7c757c76e43_1"
-          },
-          "properties": {}
-        },
-        {
           "ruleId": "7f15fa11-1210-34c8-9233-5f7846d1840a",
           "kind": "fail",
           "level": "warning",
@@ -8270,6 +8335,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "c19d0a5245207b97f37dbceb138e5ed907abb62f116bff38d4b2e26122e49e948aa966952c60634de2efd01d71cf3962bf4c984a2566a6f4a891c7c757c76e43_0"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "1a28872d-1dcd-3602-afb0-a43cebb9a090",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Finding triggers whenever there is a strcat or strncat used.\nThis is an issue because strcat or strncat can lead to buffer overflow vulns.\nFix this by using strcat_s instead.\n"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/tools/compile.c",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 5,
+                  "endLine": 21,
+                  "endColumn": 21,
+                  "snippet": {
+                    "text": "    strcat(err, str);"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "c19d0a5245207b97f37dbceb138e5ed907abb62f116bff38d4b2e26122e49e948aa966952c60634de2efd01d71cf3962bf4c984a2566a6f4a891c7c757c76e43_1"
           },
           "properties": {}
         },
@@ -8584,6 +8680,37 @@
           "properties": {}
         },
         {
+          "ruleId": "36c1e4f8-0a3a-3ef5-bb43-b11f662e4fd3",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Regex `\"[c,d]\"` may be vulnerable to catastrophic backtracking, which may lead to denial of service attacks. (This rule only matches regex usage, not actual REDoS patterns. For full detection, use Semgrep Pro Engine.)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/triton/tools/link.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 27,
+                  "endLine": 41,
+                  "endColumn": 46,
+                  "snippet": {
+                    "text": "        self.arg_suffix = re.compile(\"[c,d]\")"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "450a4ba77a77e0fc2f811bdf345b1787e83fb64ac0a93eb4b5811a7bcca494105070ba7297b3446ffac96c59efc0a8af8fb6433345cae41b5f79a69ef3f7adb2_0"
+          },
+          "properties": {}
+        },
+        {
           "ruleId": "c169efc2-4753-3177-b028-12946b055d6f",
           "kind": "fail",
           "level": "warning",
@@ -8708,6 +8835,37 @@
           "properties": {}
         },
         {
+          "ruleId": "c5ec3d61-e2ba-3a46-8ff4-a0505b994815",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "time.sleep() call; did you mean to leave this in?"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/tutorials/09-persistent-matmul.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 567,
+                  "startColumn": 9,
+                  "endLine": 567,
+                  "endColumn": 25,
+                  "snippet": {
+                    "text": "        time.sleep(0.01)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "a9e0c83ec904f56ec430add3454140c2de524e904d04f43ce864e7d8efa5dbb07378ad24baaf2540709e57288cf5b5212428a738a8113d83f607b67a94b9eeb4_3"
+          },
+          "properties": {}
+        },
+        {
           "ruleId": "114e3644-97cb-333c-a207-a54d4f84f5bd",
           "kind": "fail",
           "level": "warning",
@@ -8766,6 +8924,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "a9e0c83ec904f56ec430add3454140c2de524e904d04f43ce864e7d8efa5dbb07378ad24baaf2540709e57288cf5b5212428a738a8113d83f607b67a94b9eeb4_5"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "8b8429a7-15d6-3cf6-af43-5838e5e1eb4a",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Use `sys.exit` over the python shell `exit` built-in. `exit` is a helper for the interactive shell and may not be available on all Python implementations. https://stackoverflow.com/questions/6501121/difference-between-exit-and-sys-exit-in-python"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "python/tutorials/09-persistent-matmul.py",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 648,
+                  "startColumn": 9,
+                  "endLine": 648,
+                  "endColumn": 16,
+                  "snippet": {
+                    "text": "        exit(1)"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "078804ec382aab6ead414cfb69b543c2596ba8ba70221cf7dd8bee53c9bd79b244a38cf95560701e96c07cf2e6a76f67225beb581154b7d2cd2d2529558105d9_0"
           },
           "properties": {}
         },
@@ -8832,37 +9021,6 @@
           "properties": {}
         },
         {
-          "ruleId": "566c7641-1be1-32f1-bb01-b82662369ecb",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Locate all calls to interesting and potentially insecure API functions (candidate points). The auditor can backtrace from these candidate points to find pathways allowing access from untrusted input."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "unittest/Dialect/TritonGPU/DialectTest.cpp",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 600,
-                  "startColumn": 19,
-                  "endLine": 600,
-                  "endColumn": 49,
-                  "snippet": {
-                    "text": "  auto dot2dOp1 = createDotOperand(1, mfma2d, 4);"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "1b165b5ac16c2f6abf523f5e47978ad484db140a988ba0da60386a55a86a86f9b62c685b7d513d0b1617c5512bac6d84e232910d013e2f407228830994616266_1"
-          },
-          "properties": {}
-        },
-        {
           "ruleId": "c6e80298-7b02-3759-99e0-f7d64a9743f7",
           "kind": "fail",
           "level": "warning",
@@ -8890,6 +9048,37 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "1b165b5ac16c2f6abf523f5e47978ad484db140a988ba0da60386a55a86a86f9b62c685b7d513d0b1617c5512bac6d84e232910d013e2f407228830994616266_0"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "566c7641-1be1-32f1-bb01-b82662369ecb",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Locate all calls to interesting and potentially insecure API functions (candidate points). The auditor can backtrace from these candidate points to find pathways allowing access from untrusted input."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "unittest/Dialect/TritonGPU/DialectTest.cpp",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 600,
+                  "startColumn": 19,
+                  "endLine": 600,
+                  "endColumn": 49,
+                  "snippet": {
+                    "text": "  auto dot2dOp1 = createDotOperand(1, mfma2d, 4);"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "1b165b5ac16c2f6abf523f5e47978ad484db140a988ba0da60386a55a86a86f9b62c685b7d513d0b1617c5512bac6d84e232910d013e2f407228830994616266_1"
           },
           "properties": {}
         },
@@ -8956,37 +9145,6 @@
           "properties": {}
         },
         {
-          "ruleId": "b815d4cd-05d2-3adf-b49d-0e861019b92f",
-          "kind": "fail",
-          "level": "warning",
-          "message": {
-            "text": "Locate all calls to interesting and potentially insecure API functions (candidate points). The auditor can backtrace from these candidate points to find pathways allowing access from untrusted input."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "unittest/Dialect/TritonGPU/DialectTest.cpp",
-                  "uriBaseId": "%SRCROOT%"
-                },
-                "region": {
-                  "startLine": 617,
-                  "startColumn": 20,
-                  "endLine": 617,
-                  "endColumn": 51,
-                  "snippet": {
-                    "text": "  auto tdot3dOp0 = createDotOperand(0, tmfma3d, 4);"
-                  }
-                }
-              }
-            }
-          ],
-          "fingerprints": {
-            "matchBasedId/v1": "1b165b5ac16c2f6abf523f5e47978ad484db140a988ba0da60386a55a86a86f9b62c685b7d513d0b1617c5512bac6d84e232910d013e2f407228830994616266_6"
-          },
-          "properties": {}
-        },
-        {
           "ruleId": "a2f2190f-e303-3f7e-bb23-fef3a5f47302",
           "kind": "fail",
           "level": "warning",
@@ -9014,6 +9172,68 @@
           ],
           "fingerprints": {
             "matchBasedId/v1": "1b165b5ac16c2f6abf523f5e47978ad484db140a988ba0da60386a55a86a86f9b62c685b7d513d0b1617c5512bac6d84e232910d013e2f407228830994616266_4"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "46de374f-07dc-3de8-860c-a2636c15eaaf",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Locate all calls to interesting and potentially insecure API functions (candidate points). The auditor can backtrace from these candidate points to find pathways allowing access from untrusted input."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "unittest/Dialect/TritonGPU/DialectTest.cpp",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 612,
+                  "startColumn": 19,
+                  "endLine": 612,
+                  "endColumn": 49,
+                  "snippet": {
+                    "text": "  auto dot3dOp1 = createDotOperand(1, mfma3d, 4);"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "1b165b5ac16c2f6abf523f5e47978ad484db140a988ba0da60386a55a86a86f9b62c685b7d513d0b1617c5512bac6d84e232910d013e2f407228830994616266_5"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "b815d4cd-05d2-3adf-b49d-0e861019b92f",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Locate all calls to interesting and potentially insecure API functions (candidate points). The auditor can backtrace from these candidate points to find pathways allowing access from untrusted input."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "unittest/Dialect/TritonGPU/DialectTest.cpp",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 617,
+                  "startColumn": 20,
+                  "endLine": 617,
+                  "endColumn": 51,
+                  "snippet": {
+                    "text": "  auto tdot3dOp0 = createDotOperand(0, tmfma3d, 4);"
+                  }
+                }
+              }
+            }
+          ],
+          "fingerprints": {
+            "matchBasedId/v1": "1b165b5ac16c2f6abf523f5e47978ad484db140a988ba0da60386a55a86a86f9b62c685b7d513d0b1617c5512bac6d84e232910d013e2f407228830994616266_6"
           },
           "properties": {}
         },
